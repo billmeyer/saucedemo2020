@@ -29,7 +29,7 @@ public class MobileTestRunner extends AbstractTestRunner
 {
     @Parameters({"deviceName", "platformName", "platformVersion", "appKey"})
     @BeforeClass(alwaysRun = true)
-    public void setUpMobileProfile(@Optional("") String deviceName, String platformName, String platformVersion, String appKey)
+    public void setUpMobileProfile(@Optional("") String deviceName, String platformName, String platformVersion, @Optional("") String appKey)
     {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 

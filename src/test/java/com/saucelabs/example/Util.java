@@ -86,12 +86,10 @@ public class Util
 
     public static void reportSauceLabsResult(WebDriver driver, boolean status)
     {
-        if (runLocal || isMobile)
+        if (!isMobile || isEmuSim)
         {
-            return;
+            ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
         }
-
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
     }
 
     /**
@@ -144,7 +142,8 @@ public class Util
 //
 //    protected void log(Class instance, String output)
 //    {
-//        System.out.printf("[%s][%s] %s\n", Thread.currentThread().getName(), instance.getClass().getSimpleName(), output);
+//        System.out.printf("[%s][%s] %s\n", Thread.currentThread().getName(), instance.getClass().getSimpleName(),
+//        output);
 //    }
 
     public static void sleep(long msecs)
@@ -166,10 +165,14 @@ public class Util
             TestPlatform tp = Util.getTestPlatform();
 
             if (tp.getPlatformContainer() != PlatformContainer.DESKTOP)
+            {
                 return;
+            }
 
             if (tp.getPlatformName().equalsIgnoreCase("linux"))
+            {
                 return;
+            }
 
             String browserName = driver.getCapabilities().getBrowserName();
             if (browserName.equals("chrome"))
