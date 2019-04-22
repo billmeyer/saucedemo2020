@@ -6,7 +6,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -155,39 +154,6 @@ public class Util
         catch (InterruptedException e)
         {
             e.printStackTrace();
-        }
-    }
-
-    public static void getSaucePerformance(RemoteWebDriver driver)
-    {
-        if (!Util.runLocal)
-        {
-            TestPlatform tp = Util.getTestPlatform();
-
-            if (tp.getPlatformContainer() != PlatformContainer.DESKTOP)
-            {
-                return;
-            }
-
-            if (tp.getPlatformName().equalsIgnoreCase("linux"))
-            {
-                return;
-            }
-
-            String browserName = driver.getCapabilities().getBrowserName();
-            if (browserName.equals("chrome"))
-            {
-                try
-                {
-                    driver.manage().logs().get("sauce:performance");
-
-//                    PagesFactory.getInstance().getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-                    Util.sleep(3000);
-                }
-                catch (org.openqa.selenium.UnsupportedCommandException ignored)
-                {
-                }
-            }
         }
     }
 

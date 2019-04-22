@@ -51,7 +51,6 @@ public class CheckoutSteps
         String actual = page.getItemTotal();
         Assert.assertEquals(actual, expected);
 
-        Util.getSaucePerformance(driver);
         Util.takeScreenShot(driver);
     }
 

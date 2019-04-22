@@ -54,7 +54,6 @@ public class LoginPageSteps implements En
             Assert.assertEquals(currentUrl, InventoryPage.PAGE_URL);
 
             Util.takeScreenShot(driver);
-            Util.getSaucePerformance(driver);
         });
 
         Then("^The user should be shown a locked out message$", () -> {
