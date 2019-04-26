@@ -32,8 +32,8 @@ public class DriverFactory implements En
     private static final String userName = System.getenv("SAUCE_USERNAME");
     private static final String accessKey = System.getenv("SAUCE_ACCESS_KEY");
     private static final String toAccessKey = System.getenv("TESTOBJECT_API_KEY");
-    private static final String headlessUserName = System.getenv("HEADLESS_SAUCE_USERNAME");
-    private static final String headlessAccessKey = System.getenv("HEADLESS_SAUCE_ACCESS_KEY");
+    private static final String headlessUserName = System.getenv("SAUCE_HEADLESS_USERNAME");
+    private static final String headlessAccessKey = System.getenv("SAUCE_HEADLESS_ACCESS_KEY");
 
     private static URL LOCAL_SELENIUM_URL;
     private static URL LOCAL_APPIUM_URL;
@@ -66,7 +66,7 @@ public class DriverFactory implements En
 
         try
         {
-            SAUCE_US_URL = new URL("https://ondemand.saucelabs.com:443/wd/hub");
+            SAUCE_US_URL = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub");
         }
         catch (MalformedURLException e)
         {
@@ -96,7 +96,7 @@ public class DriverFactory implements En
 
         try
         {
-            HEADLESS_URL = new URL("http://ondemand.us-east1.headless.saucelabs.com/wd/hub");
+            HEADLESS_URL = new URL("http://ondemand.us-east-1.saucelabs.com/wd/hub");
         }
         catch (MalformedURLException e)
         {
@@ -144,7 +144,7 @@ public class DriverFactory implements En
 
         String sessionId = driver.getSessionId().toString();
         Util.log("Started %s", new Date().toString());
-        Util.log("Test Results: https://app.us-east1.headless.saucelabs.com/tests/%s", sessionId);
+        Util.log("Test Results: https://app.us-east-1.saucelabs.com/tests/%s", sessionId);
         Util.log("SauceOnDemandSessionID=%s job-name=%s", sessionId, scenario.getName());
 
         // Set reasonable page load and script timeouts
@@ -378,8 +378,14 @@ public class DriverFactory implements En
             caps.setCapability("deviceOrientation", "portrait");
             caps.setCapability("recordMp4", "true");
 
-            if (tp.getDeviceName() != null && (tp.getDeviceName().endsWith(" Simulator") || tp.getDeviceName().endsWith(
-                    " Emulator")))
+            if (Util.useUnifiedPlatform == true)
+            {
+                caps.setCapability("username", userName);
+                caps.setCapability("accesskey", accessKey);
+
+                url = SAUCE_US_URL;
+            }
+            else if (tp.getDeviceName() != null && (tp.getDeviceName().endsWith(" Simulator") || tp.getDeviceName().endsWith(" Emulator")))
             {
                 Util.isEmuSim = true;
                 caps.setCapability("username", userName);
