@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="15" configfailurepolicy="continue">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="50" configfailurepolicy="continue">
 
     <!-- CHROME testing -->
 
