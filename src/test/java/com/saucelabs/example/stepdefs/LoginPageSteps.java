@@ -1,5 +1,6 @@
 package com.saucelabs.example.stepdefs;
 
+import com.saucelabs.example.SauceThrottle;
 import com.saucelabs.example.Util;
 import com.saucelabs.example.pages.InventoryPage;
 import com.saucelabs.example.pages.LoginPage;
@@ -7,6 +8,8 @@ import com.saucelabs.example.pages.PagesFactory;
 import cucumber.api.java8.En;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
+
+import java.util.Map;
 
 public class LoginPageSteps implements En
 {
@@ -19,6 +22,27 @@ public class LoginPageSteps implements En
 
             LoginPage loginPage = pf.getLoginPage();
             loginPage.navigateTo(LoginPage.PAGE_URL);
+        });
+
+        And("^The network speed is \"([^\"]*)\"$", (String networkSpeed) -> {
+            PagesFactory pf = PagesFactory.getInstance();
+            RemoteWebDriver driver = pf.getDriver();
+            Util.info(driver, ">>> The network speed is %s", networkSpeed);
+            Util.sauceThrottle(driver, SauceThrottle.fromValue(networkSpeed));
+        });
+
+        And("^The Page Load Time should be less than \"([^\"]*)\" msecs$", (String pageLoadTime) -> {
+            // We need to give the capture routines time to capture the performance data before querying it
+            Util.sleep(3000);
+            PagesFactory pf = PagesFactory.getInstance();
+            RemoteWebDriver driver = pf.getDriver();
+            Util.info(driver, ">>> The Page Load Time should be less than %s msecs", pageLoadTime);
+            Map<String, Object> performance = Util.getSaucePerformance(driver);
+
+            Long expected = Long.parseLong(pageLoadTime);
+            Long actual = (Long)performance.get("load");
+
+            Assert.assertTrue(actual < expected);
         });
 
         And("^The user provides the username as \"([^\"]*)\" and password as \"([^\"]*)\"$", (String username, String password) -> {
@@ -53,7 +77,7 @@ public class LoginPageSteps implements En
             String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
             Assert.assertEquals(currentUrl, InventoryPage.PAGE_URL);
 
-            Util.takeScreenShot(driver);
+//            Util.takeScreenShot(driver);
         });
 
         Then("^The user should be shown a locked out message$", () -> {

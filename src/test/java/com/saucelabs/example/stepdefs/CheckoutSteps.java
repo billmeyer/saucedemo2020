@@ -51,7 +51,7 @@ public class CheckoutSteps
         String actual = page.getItemTotal();
         Assert.assertEquals(actual, expected);
 
-        Util.takeScreenShot(driver);
+//        Util.takeScreenShot(driver);
     }
 
     @And("^The tax should be \"([^\"]*)\"$")

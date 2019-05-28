@@ -5,6 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.Augmenter;
 
 import javax.ws.rs.client.Client;
@@ -17,6 +20,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Util
 {
@@ -145,6 +151,38 @@ public class Util
 //        System.out.printf("[%s][%s] %s\n", Thread.currentThread().getName(), instance.getClass().getSimpleName(),
 //        output);
 //    }
+
+    public static void sauceThrottle(WebDriver driver, SauceThrottle condition)
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("condition", condition.toValue());
+        ((JavascriptExecutor) driver).executeScript("sauce:throttle", map);
+    }
+
+    public static Map<String, Object> getSaucePerformance(WebDriver driver)
+    {
+        Map<String, Object> results = null;
+
+        if (Util.runLocal == false)
+        {
+            try
+            {
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("type", "sauce:performance");
+                results = (Map<String, Object>)((JavascriptExecutor) driver).executeScript("sauce:log", map);
+
+                // Sample return value:
+                // {load=3595, speedIndex=759.3125, pageWeight=3208724, firstMeaningfulPaint=595, timeToFirstInteractive=3586, timeToFirstByte=22, firstPaint=595, firstContentfulPaint=595, pageWeightEncoded=150159, perceptualSpeedIndex=863.4155969137146, domContentLoaded=3586}
+            }
+            catch (org.openqa.selenium.UnsupportedCommandException ignored)
+            {
+                ignored.printStackTrace();
+            }
+        }
+
+        return results;
+    }
 
     public static void sleep(long msecs)
     {

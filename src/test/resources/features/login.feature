@@ -18,6 +18,23 @@ Feature: Test Entering Credentials
 
   ###############################################################################################
   @regression1
+  Scenario Outline: Verify valid users can sign in over a slow 3G connection
+    And The network speed is "REGULAR_3G"
+    And The user provides the username as "<username>" and password as "<password>"
+    And The user clicks the 'Login' button
+    Then The user should login successfully and is brought to the inventory page
+    Examples:
+      |username       |password     |
+      |standard_user  |secret_sauce |
+
+  ###############################################################################################
+  @performance1
+  @regression1
+  Scenario: Verify login page load time
+    Then The Page Load Time should be less than "5000" msecs
+
+  ###############################################################################################
+  @regression1
   Scenario Outline: Verify valid users can sign in
     And The user provides the username as "<username>" and password as "<password>"
     And The user clicks the 'Login' button
