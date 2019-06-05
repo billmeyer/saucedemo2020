@@ -33,26 +33,29 @@ public class LoginPageSteps implements En
 
         And("^The Page Load Time should be less than \"([^\"]*)\" msecs$", (String pageLoadTime) -> {
             // We need to give the capture routines time to capture the performance data before querying it
-            Util.sleep(3000);
+            Util.sleep(5000);
             PagesFactory pf = PagesFactory.getInstance();
             RemoteWebDriver driver = pf.getDriver();
             Util.info(driver, ">>> The Page Load Time should be less than %s msecs", pageLoadTime);
+
             Map<String, Object> performance = Util.getSaucePerformance(driver);
-
-            Long expected = Long.parseLong(pageLoadTime);
-            Long actual;
-
-            Object load = performance.get("load");
-            if (load instanceof Double)
+            if (performance != null)
             {
-                actual = ((Double) load).longValue();
-            }
-            else
-            {
-                actual = (Long) load;
-            }
+                Long expected = Long.parseLong(pageLoadTime);
+                Long actual;
 
-            Assert.assertTrue(actual < expected);
+                Object load = performance.get("load");
+                if (load instanceof Double)
+                {
+                    actual = ((Double) load).longValue();
+                }
+                else
+                {
+                    actual = (Long) load;
+                }
+
+                Assert.assertTrue(actual < expected);
+            }
         });
 
         And("^The user provides the username as \"([^\"]*)\" and password as \"([^\"]*)\"$", (String username, String password) -> {
