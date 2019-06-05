@@ -17,12 +17,13 @@
 
         <maven.failsafe.plugin.version>2.22.1</maven.failsafe.plugin.version>
         <maven.build.helper.plugin.version>3.0.0</maven.build.helper.plugin.version>
-        <junit.version>4.12</junit.version>
         <cucumber.version>4.2.0</cucumber.version>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
 
         <generated.runner.directory>${project.build.directory}/parallel/runners</generated.runner.directory>
         <generated.feature.directory>${project.build.directory}/parallel/features</generated.feature.directory>
+
+        <testng.file>testng.xml</testng.file>
     </properties>
 
     <dependencies>
@@ -212,7 +213,7 @@
                 <version>2.22.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${testng.file}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
