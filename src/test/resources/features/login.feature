@@ -28,12 +28,6 @@ Feature: Test Entering Credentials
       |standard_user  |secret_sauce |
 
   ###############################################################################################
-  @performance1
-  @regression1
-  Scenario: Verify login page load time
-    Then The Page Load Time should be less than "5000" msecs
-
-  ###############################################################################################
   @regression1
   Scenario Outline: Verify valid users can sign in
     And The user provides the username as "<username>" and password as "<password>"
@@ -63,3 +57,10 @@ Feature: Test Entering Credentials
     Examples:
       |username       |password     |
       |fake_user      |bogus        |
+
+  ###############################################################################################
+  @performance1
+  Scenario: Test Page Load Time
+    Given The user is on the Home Page
+    Then The Page Load Time should be less than "5000" msecs
+

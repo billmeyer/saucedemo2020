@@ -54,3 +54,10 @@
       Examples:
         |username|password|
         |standard_user  |secret_sauce |
+
+    ###############################################################################################
+    @performance1
+    Scenario: Test Page Load Time
+      Given The user is on the Home Page
+      Then The Page Load Time should be less than "5000" msecs
+
