@@ -183,32 +183,32 @@
         </classes>
     </test>
 
-    <test name="Chrome on Android 8.1 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="8.1"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+    <!--    <test name="Chrome on Android 8.1 Emulator">-->
+    <!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+    <!--        <parameter name="platformName" value="Android"/>-->
+    <!--        <parameter name="platformVersion" value="8.1"/>-->
+    <!--        <classes>-->
+    <!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
 
-    <test name="Chrome on Android 7.1 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7.1"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+    <!--    <test name="Chrome on Android 7.1 Emulator">-->
+    <!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+    <!--        <parameter name="platformName" value="Android"/>-->
+    <!--        <parameter name="platformVersion" value="7.1"/>-->
+    <!--        <classes>-->
+    <!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
 
-    <test name="Chrome on Android 7 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+    <!--    <test name="Chrome on Android 7 Emulator">-->
+    <!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+    <!--        <parameter name="platformName" value="Android"/>-->
+    <!--        <parameter name="platformVersion" value="7.0"/>-->
+    <!--        <classes>-->
+    <!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
 
     <!-- SIMULATOR testing -->
 
