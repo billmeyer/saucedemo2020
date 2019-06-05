@@ -25,15 +25,6 @@
         </classes>
     </test>
 
-    <test name="Chrome on Linux in the US DC">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Linux"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
-
     <!--Chrome in the EU-->
 
     <test name="Chrome on Windows 10 in the EU DC">
@@ -50,16 +41,6 @@
         <parameter name="browser" value="CHROME"/>
         <parameter name="version" value="latest"/>
         <parameter name="platformName" value="macOS 10.13"/>
-        <parameter name="dataCenter" value="EU"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
-
-    <test name="Chrome on Linux in the EU DC">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Linux"/>
         <parameter name="dataCenter" value="EU"/>
         <classes>
             <class name="com.saucelabs.example.DesktopTestRunner"/>
@@ -99,15 +80,6 @@
         </classes>
     </test>
 
-    <test name="Firefox on Linux in the US DC">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Linux"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
-
     <!-- Firefox in the EU -->
 
     <test name="Firefox on Windows 10 in the EU DC">
@@ -124,16 +96,6 @@
         <parameter name="browser" value="FIREFOX"/>
         <parameter name="version" value="64.0"/>
         <parameter name="platformName" value="macOS 10.13"/>
-        <parameter name="dataCenter" value="EU"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
-
-    <test name="Firefox on Linux in the EU DC">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Linux"/>
         <parameter name="dataCenter" value="EU"/>
         <classes>
             <class name="com.saucelabs.example.DesktopTestRunner"/>
