@@ -232,15 +232,15 @@
 
     <!-- Real Device Testing -->
 
-    <test name="Chrome on Android">
-        <parameter name="appKey" value="$ENV{TESTOBJECT_API_KEY}"/>
-        <parameter name="deviceName" value=".*"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+    <!--    <test name="Chrome on Android">-->
+    <!--        <parameter name="appKey" value="$ENV{TESTOBJECT_API_KEY}"/>-->
+    <!--        <parameter name="deviceName" value=".*"/>-->
+    <!--        <parameter name="platformName" value="Android"/>-->
+    <!--        <parameter name="platformVersion" value="7"/>-->
+    <!--        <classes>-->
+    <!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
 
     <!--    <test name="Safari on iOS">-->
     <!--        &lt;!&ndash;<parameter name="deviceName" value="iPhone 8 Plus Simulator"/>&ndash;&gt;-->
