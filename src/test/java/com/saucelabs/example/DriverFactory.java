@@ -374,7 +374,7 @@ public class DriverFactory implements En
         }
         else
         {
-//            caps.setCapability("appiumVersion", "1.12.1");
+            caps.setCapability("appiumVersion", "1.9.1");
             caps.setCapability("deviceOrientation", "portrait");
             caps.setCapability("recordMp4", "true");
 
