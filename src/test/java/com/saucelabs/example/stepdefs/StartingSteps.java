@@ -35,10 +35,61 @@ public class StartingSteps extends DriverFactory implements En
             {
                 TestPlatform.Builder builder = new TestPlatform.Builder();
 
-                tp = builder.browser(Browser.CHROME).browserVersion("73").platformName("Windows 10").dataCenter(
-                        DataCenter.US).platformContainer(PlatformContainer.DESKTOP).build();
-//                tp = builder.deviceName("iPhone 7").platformName("iOS").platformVersion("12.1.4").appKey("$ENV{TESTOBJECT_API_KEY}").build();
-//                tp = builder.deviceName("Samsung.*").platformName("Android").platformVersion("8.0.0").appKey("$ENV{TESTOBJECT_API_KEY}").build();
+                // @formatter:off
+
+                // Sample Window/Chrome test
+                tp = builder
+                        .browser(Browser.CHROME)
+                        .browserVersion("latest")
+                        .platformName("Windows 10")
+                        .dataCenter(DataCenter.US)
+                        .platformContainer(PlatformContainer.DESKTOP)
+                        .build();
+
+//                // Sample Headless/Chrome test
+//                tp = builder
+//                        .browser(Browser.CHROME)
+//                        .browserVersion("latest")
+//                        .platformName("Linux")
+//                        .dataCenter(DataCenter.US)
+//                        .platformContainer(PlatformContainer.HEADLESS)
+//                        .build();
+
+                // Sample Android Emulator test
+//                tp = builder
+//                        .deviceName("Android GoogleAPI Emulator")
+//                        .platformName("Android")
+//                        .platformVersion("9.0")
+//                        .dataCenter(DataCenter.US)
+//                        .platformContainer(PlatformContainer.EMULATOR)
+//                        .build();
+
+                // Sample iOS Simulator test
+//                tp = builder
+//                        .deviceName("iPhone X Simulator")
+//                        .platformName("iOS")
+//                        .platformVersion("12.0")
+//                        .dataCenter(DataCenter.US)
+//                        .platformContainer(PlatformContainer.SIMULATOR)
+//                        .build();
+
+                // Sample Physical iPhone
+//                tp = builder
+//                        .deviceName("iPhone 7")
+//                        .platformName("iOS")
+//                        .platformVersion("12.1.4")
+//                        .appKey("$ENV{TESTOBJECT_API_KEY}")
+//                        .build();
+
+                // Sample Physical Android
+//                tp = builder
+//                        .deviceName("Samsung.*")
+//                        .platformName("Android")
+//                        .platformVersion("8.0.0")
+//                        .appKey("$ENV{TESTOBJECT_API_KEY}")
+//                        .build();
+
+                // @formatter:on
                 Util.setTestPlatform(tp);
             }
 
@@ -57,15 +108,10 @@ public class StartingSteps extends DriverFactory implements En
                 return;
             }
 
-            if (!Util.isMobile || Util.isEmuSim)
-            {
-                Util.reportSauceLabsResult(driver, isSuccess);
-            }
-            else
-            {
-                String sessionId = driver.getSessionId().toString();
-                Util.reportTestObjectResult(sessionId, isSuccess);
-            }
+            // For now, report test status to both SL and TO and let the Util methods determine which is appropriate...
+            Util.reportSauceLabsResult(driver, isSuccess);
+            String sessionId = driver.getSessionId().toString();
+            Util.reportTestObjectResult(sessionId, isSuccess);
 
             driver.quit();
         });
