@@ -346,8 +346,6 @@ public class DriverFactory implements En
         URL url = null;
         RemoteWebDriver driver;
 
-        Util.isMobile = true;
-
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("name", scenario.getName());
 
@@ -387,7 +385,6 @@ public class DriverFactory implements En
             }
             else if (tp.getDeviceName() != null && (tp.getDeviceName().endsWith(" Simulator") || tp.getDeviceName().endsWith(" Emulator")))
             {
-                Util.isEmuSim = true;
                 caps.setCapability("username", userName);
                 caps.setCapability("accesskey", accessKey);
 
@@ -395,7 +392,6 @@ public class DriverFactory implements En
             }
             else
             {
-                Util.isEmuSim = false;
                 caps.setCapability("testobject_api_key", toAccessKey);
                 url = TESTOBJECT_URL;
             }

@@ -34,8 +34,10 @@ public class Util
 
     public static final String buildTag = "Build " + new Date();
 
-    public static boolean isMobile;
-    public static boolean isEmuSim;
+//    public static boolean isDesktop;
+//    public static boolean isMobile;
+//    public static boolean isEmuSim;
+//    public static boolean isHeadless;
 
     private static ThreadLocal<TestPlatform> testPlatformThreadLocal = new ThreadLocal<>();
 
@@ -62,9 +64,19 @@ public class Util
         System.out.printf(format, args);
         System.out.println();
 
-        if (runLocal || isMobile)
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
         {
-            return;
+            case DESKTOP:
+            case EMULATOR:
+            case SIMULATOR:
+            case HEADLESS:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
         }
 
         String msg = String.format(format, args);
@@ -81,9 +93,19 @@ public class Util
         System.out.printf(format, args);
         System.out.println();
 
-        if (runLocal || isMobile)
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
         {
-            return;
+            case DESKTOP:
+            case EMULATOR:
+            case SIMULATOR:
+            case HEADLESS:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
         }
 
         String msg = String.format(format, args);
@@ -92,10 +114,22 @@ public class Util
 
     public static void reportSauceLabsResult(WebDriver driver, boolean status)
     {
-        if (!isMobile || isEmuSim)
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
         {
-            ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
+            case DESKTOP:
+            case EMULATOR:
+            case SIMULATOR:
+            case HEADLESS:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
         }
+
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
     }
 
     /**
@@ -106,9 +140,16 @@ public class Util
      */
     public static void reportTestObjectResult(String sessionId, boolean status)
     {
-        if (runLocal || isEmuSim)
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
         {
-            return;
+            case MOBILE:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
         }
 
         // The Appium REST Api expects JSON payloads...
@@ -134,26 +175,20 @@ public class Util
         System.out.println();
     }
 
-//    public static void log(Object instance, String format, Object... args)
-//    {
-//        String mergedFormat = "[%s][%s] " + format;
-//        Object[] mergedArgs = new Object[args.length + 2];
-//        mergedArgs[0] = Thread.currentThread().getName();
-//        mergedArgs[1] = instance.getClass().getSimpleName();
-//        System.arraycopy(args, 0, mergedArgs, 2, args.length);
-//
-//        System.out.printf(mergedFormat, mergedArgs);
-//        System.out.println();
-//    }
-//
-//    protected void log(Class instance, String output)
-//    {
-//        System.out.printf("[%s][%s] %s\n", Thread.currentThread().getName(), instance.getClass().getSimpleName(),
-//        output);
-//    }
-
     public static void sauceThrottle(WebDriver driver, SauceThrottle condition)
     {
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
+        {
+            case DESKTOP:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
+        }
+
         Map<String, Object> map = new HashMap<>();
         map.put("condition", condition.toValue());
         ((JavascriptExecutor) driver).executeScript("sauce:throttle", map);
@@ -161,24 +196,47 @@ public class Util
 
     public static Map<String, Object> getSaucePerformance(WebDriver driver)
     {
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+        switch (pc)
+        {
+            case DESKTOP:
+            case EMULATOR:
+            case SIMULATOR:
+            case HEADLESS:
+                break;
+
+            default:
+                // All others... not supported.
+                return null;
+        }
+
+        Browser browser = getTestPlatform().getBrowser();
+        switch (browser)
+        {
+            case CHROME:
+                break;
+
+            default:
+                // All others... not supported.
+                return null;
+        }
+
         Map<String, Object> results = null;
 
-        if (Util.runLocal == false)
+        try
         {
-            try
-            {
 
-                Map<String, Object> map = new HashMap<>();
-                map.put("type", "sauce:performance");
-                results = (Map<String, Object>)((JavascriptExecutor) driver).executeScript("sauce:log", map);
+            Map<String, Object> map = new HashMap<>();
+            map.put("type", "sauce:performance");
+            results = (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:log", map);
 
-                // Sample return value:
-                // {load=3595, speedIndex=759.3125, pageWeight=3208724, firstMeaningfulPaint=595, timeToFirstInteractive=3586, timeToFirstByte=22, firstPaint=595, firstContentfulPaint=595, pageWeightEncoded=150159, perceptualSpeedIndex=863.4155969137146, domContentLoaded=3586}
-            }
-            catch (org.openqa.selenium.UnsupportedCommandException ignored)
-            {
-                ignored.printStackTrace();
-            }
+            // Sample return value:
+            // {load=3595, speedIndex=759.3125, pageWeight=3208724, firstMeaningfulPaint=595, timeToFirstInteractive=3586, timeToFirstByte=22, firstPaint=595, firstContentfulPaint=595, pageWeightEncoded=150159,
+            // perceptualSpeedIndex=863.4155969137146, domContentLoaded=3586}
+        }
+        catch (org.openqa.selenium.UnsupportedCommandException ignored)
+        {
+            ignored.printStackTrace();
         }
 
         return results;
@@ -198,6 +256,21 @@ public class Util
 
     public static void takeScreenShot(WebDriver driver)
     {
+        PlatformContainer pc = getTestPlatform().getPlatformContainer();
+
+        switch (pc)
+        {
+            case DESKTOP:
+            case EMULATOR:
+            case SIMULATOR:
+            case HEADLESS:
+                break;
+
+            default:
+                // All others... not supported.
+                return;
+        }
+
         WebDriver augDriver = new Augmenter().augment(driver);
         File file = ((TakesScreenshot) augDriver).getScreenshotAs(OutputType.FILE);
 
