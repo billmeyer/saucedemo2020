@@ -40,7 +40,17 @@ public class LoginPageSteps implements En
             Map<String, Object> performance = Util.getSaucePerformance(driver);
 
             Long expected = Long.parseLong(pageLoadTime);
-            Long actual = (Long)performance.get("load");
+            Long actual;
+
+            Object load = performance.get("load");
+            if (load instanceof Double)
+            {
+                actual = ((Double) load).longValue();
+            }
+            else
+            {
+                actual = (Long) load;
+            }
 
             Assert.assertTrue(actual < expected);
         });
