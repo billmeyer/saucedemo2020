@@ -42,12 +42,21 @@ public class MobileTestRunner extends AbstractTestRunner
         }
         System.err.printf("appKey=%s\n", appKey);
 
+        PlatformContainer pc;
+
+        if (deviceName.endsWith(" Emulator"))
+            pc = PlatformContainer.EMULATOR;
+        else if (deviceName.endsWith(" Simulator"))
+            pc = PlatformContainer.SIMULATOR;
+        else
+            pc = PlatformContainer.MOBILE;
+
         // @formatter:off
         TestPlatform tp = builder
                 .deviceName(deviceName)
                 .platformName(platformName)
                 .platformVersion(platformVersion)
-                .platformContainer(PlatformContainer.MOBILE)
+                .platformContainer(pc)
                 .appKey(appKey)
                 .build();
         // @formatter:on
