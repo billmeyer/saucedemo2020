@@ -57,7 +57,25 @@
 
     ###############################################################################################
     @performance1
-    Scenario: Test Page Load Time
+    Scenario Outline: Validate Order Totals Over Slow 3G Connection
       Given The user is on the Home Page
-      Then The Page Load Time should be less than "5000" msecs
-
+      And The network speed is "REGULAR_3G"
+      And The user provides the username as "<username>" and password as "<password>"
+      And The user clicks the 'Login' button
+      And The user selects
+        |Sauce Labs Backpack    |
+        |Sauce Labs Bolt T-Shirt|
+        |Sauce Labs Onesie      |
+        |Test.allTheThings() T-Shirt (Red)|
+        |Sauce Labs Fleece Jacket         |
+        |Sauce Labs Bike Light            |
+      And The user clicks on the shopping cart
+      And The user clicks 'Checkout'
+      And The user provides the first name as "Tom" and last name as "Jones" and zip code as "12345"
+      And The user clicks 'Continue'
+      Then The item total should be "Item total: $129.94"
+      And The tax should be "Tax: $10.40"
+      And The total should be "Total: $140.34"
+      Examples:
+        |username|password|
+        |standard_user  |secret_sauce |
