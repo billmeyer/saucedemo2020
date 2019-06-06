@@ -53,7 +53,7 @@ public class CheckOutStepOnePage extends AbstractPage
 
     public void clickContinue()
     {
-        continueElem.click();
+        continueElem.submit();
     }
 }
 
