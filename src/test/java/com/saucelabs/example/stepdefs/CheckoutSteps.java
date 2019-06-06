@@ -46,6 +46,7 @@ public class CheckoutSteps
         Util.info(driver,">>> The item total should be '%s'", itemTotal);
 
         CheckOutStepTwoPage page = pf.getCheckOutStepTwoPage();
+        page.waitForPageLoad();
 
         String expected = itemTotal;
         String actual = page.getItemTotal();
