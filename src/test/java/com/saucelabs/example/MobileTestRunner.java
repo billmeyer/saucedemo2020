@@ -19,9 +19,9 @@ import org.testng.annotations.Parameters;
     // Plugins
     plugin = {
         // Cucumber report location
-        "json:target/cucumber-report/cucumber.json",
-        "usage:target/cucumber-report/cucumber-usage.json",
-        "html:target/cucumber-html-report"
+        "json:target/json-reports/cucumber-mobile.json",
+        "usage:target/usage-reports/cucumber-usage-mobile.json"
+//        "html:target/cucumber-html-report"
     }
 )
 // @formatter:on
@@ -40,7 +40,7 @@ public class MobileTestRunner extends AbstractTestRunner
             String envVar = appKey.substring(5, appKey.length()-1);
             appKey = System.getenv(envVar);
         }
-        System.err.printf("appKey=%s\n", appKey);
+//        System.err.printf("appKey=%s\n", appKey);
 
         PlatformContainer pc;
 

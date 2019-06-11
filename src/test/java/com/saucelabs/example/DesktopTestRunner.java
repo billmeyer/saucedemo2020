@@ -19,9 +19,9 @@ import org.testng.annotations.Parameters;
     // Plugins
     plugin = {
         // Cucumber report location
-        "json:target/cucumber-report/cucumber.json",
-        "usage:target/cucumber-report/cucumber-usage.json",
-        "html:target/cucumber-html-report",
+        "json:target/json-reports/cucumber-desktop.json",
+        "usage:target/usage-reports/cucumber-usage-desktop.json"
+//        "html:target/cucumber-html-report",
     }
 )
 // @formatter:on

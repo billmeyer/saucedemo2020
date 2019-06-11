@@ -211,6 +211,12 @@ public class Util
         }
 
         Browser browser = getTestPlatform().getBrowser();
+        if (browser == null)
+        {
+            System.err.printf("Browser is null in getSaucePerformance()!\n");
+            return null;
+        }
+        
         switch (browser)
         {
             case CHROME:

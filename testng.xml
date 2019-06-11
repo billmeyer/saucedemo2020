@@ -68,14 +68,14 @@
 
     <!-- Chrome on Headless-->
 
-    <!--    <test name="Chrome on Headless">-->
-    <!--        <parameter name="browser" value="CHROME"/>-->
-    <!--        <parameter name="version" value="latest"/>-->
-    <!--        <parameter name="platformName" value="Linux"/>-->
-    <!--        <classes>-->
-    <!--            <class name="com.saucelabs.example.HeadlessTestRunner"/>-->
-    <!--        </classes>-->
-    <!--    </test>-->
+    <test name="Chrome on Headless">
+        <parameter name="browser" value="CHROME"/>
+        <parameter name="version" value="latest"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
 
     <!-- FIREFOX testing -->
 
