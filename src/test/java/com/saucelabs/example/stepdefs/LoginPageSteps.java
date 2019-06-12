@@ -45,16 +45,19 @@ public class LoginPageSteps implements En
                 Long actual;
 
                 Object load = performance.get("load");
-                if (load instanceof Double)
+                if (load != null)
                 {
-                    actual = ((Double) load).longValue();
-                }
-                else
-                {
-                    actual = (Long) load;
-                }
+                    if (load instanceof Double)
+                    {
+                        actual = ((Double) load).longValue();
+                    }
+                    else
+                    {
+                        actual = (Long) load;
+                    }
 
-                Assert.assertTrue(actual < expected);
+                    Assert.assertTrue(actual < expected);
+                }
             }
         });
 
