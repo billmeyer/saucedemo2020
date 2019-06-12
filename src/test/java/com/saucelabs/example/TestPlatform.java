@@ -10,6 +10,8 @@ public class TestPlatform
     private String deviceName;
     private String platformName;
     private String platformVersion;
+    private Boolean extendedDebugging;
+    private Boolean capturePerformance;
 
     private TestPlatform()
     {
@@ -30,6 +32,8 @@ public class TestPlatform
         return browserVersion;
     }
 
+    public Boolean getCapturePerformance() { return capturePerformance; }
+
     public DataCenter getDataCenter()
     {
         return dataCenter;
@@ -39,6 +43,8 @@ public class TestPlatform
     {
         return deviceName;
     }
+
+    public Boolean getExtendedDebugging() { return extendedDebugging; }
 
     public PlatformContainer getPlatformContainer()
     {
@@ -65,6 +71,8 @@ public class TestPlatform
         private String deviceName;
         private DataCenter dataCenter;
         private String appKey;
+        private Boolean extendedDebugging;
+        private Boolean capturePerformance;
 
         public Builder()
         {
@@ -89,6 +97,18 @@ public class TestPlatform
             return this;
         }
 
+        public Builder capturePerformance(Boolean capturePerformance)
+        {
+            this.capturePerformance = capturePerformance;
+            if (capturePerformance == true)
+            {
+                // Extended Debugging is required for Capture Performance
+                extendedDebugging = true;
+            }
+            return this;
+        }
+
+
         public Builder dataCenter(DataCenter dataCenter)
         {
             this.dataCenter = dataCenter;
@@ -98,6 +118,12 @@ public class TestPlatform
         public Builder deviceName(String deviceName)
         {
             this.deviceName = deviceName;
+            return this;
+        }
+
+        public Builder extendedDebugging(Boolean extendedDebugging)
+        {
+            this.extendedDebugging = extendedDebugging;
             return this;
         }
 
@@ -125,8 +151,10 @@ public class TestPlatform
             tp.appKey = appKey;
             tp.browser = browser;
             tp.browserVersion = browserVersion;
+            tp.capturePerformance = capturePerformance;
             tp.dataCenter = dataCenter;
             tp.deviceName = deviceName;
+            tp.extendedDebugging = extendedDebugging;
             tp.platformContainer = platformContainer;
             tp.platformName = platformName;
             tp.platformVersion = platformVersion;

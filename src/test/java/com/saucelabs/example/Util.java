@@ -1,6 +1,8 @@
 package com.saucelabs.example;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -9,6 +11,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -191,7 +194,17 @@ public class Util
 
         Map<String, Object> map = new HashMap<>();
         map.put("condition", condition.toValue());
-        ((JavascriptExecutor) driver).executeScript("sauce:throttle", map);
+        try
+        {
+            ((JavascriptExecutor) driver).executeScript("sauce:throttle", map);
+        }
+        catch (JavascriptException e)
+        {
+            RemoteWebDriver rwd = (RemoteWebDriver) driver;
+            Capabilities caps = rwd.getCapabilities();
+            System.err.printf(">>> Failed to set Sauce Throttle: %s\n(%s %s on %s)\n", e.getMessage());
+            System.err.printf(">>> (%s %s on %s)\n", caps.getBrowserName(), caps.getVersion(), caps.getPlatform());
+        }
     }
 
     public static Map<String, Object> getSaucePerformance(WebDriver driver)
@@ -216,7 +229,7 @@ public class Util
             System.err.printf("Browser is null in getSaucePerformance()!\n");
             return null;
         }
-        
+
         switch (browser)
         {
             case CHROME:
@@ -234,7 +247,17 @@ public class Util
 
             Map<String, Object> map = new HashMap<>();
             map.put("type", "sauce:performance");
-            results = (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:log", map);
+            try
+            {
+                results = (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:log", map);
+            }
+            catch (JavascriptException e)
+            {
+                RemoteWebDriver rwd = (RemoteWebDriver) driver;
+                Capabilities caps = rwd.getCapabilities();
+                System.err.printf(">>> Failed to retrieve Sauce Performance Log: %s\n(%s %s on %s)\n", e.getMessage());
+                System.err.printf(">>> (%s %s on %s)\n", caps.getBrowserName(), caps.getVersion(), caps.getPlatform());
+            }
 
             // Sample return value:
             // {load=3595, speedIndex=759.3125, pageWeight=3208724, firstMeaningfulPaint=595, timeToFirstInteractive=3586, timeToFirstByte=22, firstPaint=595, firstContentfulPaint=595, pageWeightEncoded=150159,

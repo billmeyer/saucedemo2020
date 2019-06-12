@@ -114,8 +114,7 @@ public class DriverFactory implements En
         {
             driver = getHeadlessDriverInstance(tp, scenario);
         }
-        else if (platform.startsWith("Windows ") || platform.startsWith("macOS ") || platform.startsWith(
-                "OS X") || platform.equalsIgnoreCase("linux"))
+        else if (platform.startsWith("Windows ") || platform.startsWith("macOS ") || platform.startsWith("OS X") || platform.equalsIgnoreCase("linux"))
         {
             driver = getDesktopDriverInstance(tp, scenario);
         }
@@ -221,38 +220,47 @@ public class DriverFactory implements En
             sauceOpts.setCapability("recordMp4", "true");
             sauceOpts.setCapability("recordScreenshots", "true");
 //            sauceOpts.setCapability("screenResolution", "1600x1200");
-            sauceOpts.setCapability("extendedDebugging", true);
-            sauceOpts.setCapability("capturePerformance", true);
-            sauceOpts.setCapability("seleniumVersion", "3.12.0");
+
+            if (tp.getExtendedDebugging())
+            {
+                sauceOpts.setCapability("extendedDebugging", true);
+            }
+
+            if (tp.getCapturePerformance())
+            {
+                sauceOpts.setCapability("capturePerformance", true);
+            }
+
+//            sauceOpts.setCapability("seleniumVersion", "3.12.0");
 
             // Add Jenkins Build Info...
             addJenkinsBuildInfo(sauceOpts);
 
-            if (tp.getPlatformName().equalsIgnoreCase("linux"))
+//            if (tp.getPlatformName().equalsIgnoreCase("linux"))
             {
                 // Presently, no supported browsers on Sauce Labs' Linux have W3C so we default back to the old driver
                 caps.merge(sauceOpts);
             }
-            else
-            {
-                caps.setCapability("sauce:options", sauceOpts);
-
-                // For browsers that support W3C natively, turn it on!
-                switch (tp.getBrowser())
-                {
-                    case CHROME:
-                        ChromeOptions chromeOptions = new ChromeOptions();
-                        chromeOptions.setExperimentalOption("w3c", true);
-                        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                        break;
-
-                    case FIREFOX:
-                        FirefoxOptions firefoxOptions = new FirefoxOptions();
-                        firefoxOptions.setCapability("w3c", true);
-                        caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
-                        break;
-                }
-            }
+//            else
+//            {
+//                caps.setCapability("sauce:options", sauceOpts);
+//
+//                // For browsers that support W3C natively, turn it on!
+//                switch (tp.getBrowser())
+//                {
+//                    case CHROME:
+//                        ChromeOptions chromeOptions = new ChromeOptions();
+//                        chromeOptions.setExperimentalOption("w3c", true);
+//                        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+//                        break;
+//
+//                    case FIREFOX:
+//                        FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                        firefoxOptions.setCapability("w3c", true);
+//                        caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+//                        break;
+//                }
+//            }
 
             if (tp.getDataCenter().equals(DataCenter.US))
             {
@@ -340,8 +348,7 @@ public class DriverFactory implements En
 //        return getMobileDriverInstance(scenario, Platform.ANDROID, null, deviceName, addlCaps);
 //    }
 
-    private static RemoteWebDriver getMobileDriverInstance(TestPlatform tp, Scenario scenario,
-                                                           MutableCapabilities addlCaps)
+    private static RemoteWebDriver getMobileDriverInstance(TestPlatform tp, Scenario scenario, MutableCapabilities addlCaps)
     {
         URL url = null;
         RemoteWebDriver driver;

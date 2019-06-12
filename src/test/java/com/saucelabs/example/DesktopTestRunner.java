@@ -27,9 +27,13 @@ import org.testng.annotations.Parameters;
 // @formatter:on
 public class DesktopTestRunner extends AbstractTestRunner
 {
-    @Parameters({"browser", "version", "platformName", "dataCenter"})
+    @Parameters({"browser", "version", "platformName", "dataCenter", "extendedDebugging", "capturePerformance"})
     @BeforeClass(alwaysRun = false)
-    public void setUpDesktopProfile(String browser, String version, String platformName, @Optional("US") DataCenter dataCenter)
+    public void setUpDesktopProfile(String browser, String version, String platformName,
+                                @Optional("US") DataCenter dataCenter,
+                                @Optional("false") Boolean extendedDebugging,
+                                @Optional("false") Boolean capturePerformance
+    )
     {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 
@@ -42,6 +46,8 @@ public class DesktopTestRunner extends AbstractTestRunner
                 .platformName(platformName)
                 .platformContainer(PlatformContainer.DESKTOP)
                 .dataCenter(dataCenter)
+                .extendedDebugging(extendedDebugging)
+                .capturePerformance(capturePerformance)
                 .build();
         // @formatter:on
 
