@@ -199,6 +199,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -247,7 +250,6 @@
                             <!--<param>target/cucumber-reports/CucumberTestReport.5.json</param>-->
                             <!--</jsonFiles>-->
                             <buildNumber>2</buildNumber>
-                            <parallelTesting>false</parallelTesting>
                         </configuration>
                     </execution>
                 </executions>
