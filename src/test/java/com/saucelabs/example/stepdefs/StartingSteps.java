@@ -108,11 +108,7 @@ public class StartingSteps extends DriverFactory implements En
                 return;
             }
 
-            // For now, report test status to both SL and TO and let the Util methods determine which is appropriate...
             Util.reportSauceLabsResult(driver, isSuccess);
-            String sessionId = driver.getSessionId().toString();
-            Util.reportTestObjectResult(sessionId, isSuccess);
-
             driver.quit();
         });
 

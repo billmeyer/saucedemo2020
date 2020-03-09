@@ -15,6 +15,8 @@ public class TestPlatform
 
     private TestPlatform()
     {
+        extendedDebugging = false;
+        capturePerformance = false;
     }
 
     public String getAppKey()

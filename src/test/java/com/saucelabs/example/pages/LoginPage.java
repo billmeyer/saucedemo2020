@@ -11,10 +11,12 @@ public class LoginPage extends AbstractPage
 {
     public static final String PAGE_URL = "https://www.saucedemo.com";
 
-    @FindBy(xpath = "//input[@data-test='username']")
+//    @FindBy(xpath = "//input[@data-test='username']")
+    @FindBy(id = "user-name")
     private WebElement usernameElem;
 
-    @FindBy(xpath = "//input[@data-test='password']")
+//    @FindBy(xpath = "//input[@data-test='password']")
+    @FindBy(id = "password")
     private WebElement passwordElem;
 
     @FindBy(xpath = "//input[@value='LOGIN']")
@@ -60,12 +62,14 @@ public class LoginPage extends AbstractPage
     {
         passwordElem.click();
         passwordElem.sendKeys(password);
+        Util.triggerOnChange(getDriver(), "password");
     }
 
     public void enterUsername(String username)
     {
         usernameElem.click();
         usernameElem.sendKeys(username);
+        Util.triggerOnChange(getDriver(), "user-name");
     }
 
     public boolean hasLockedOutError()

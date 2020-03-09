@@ -2,7 +2,13 @@ package com.saucelabs.example;
 
 public enum PlatformContainer
 {
-    DESKTOP("desktop"), MOBILE("mobile"), EMULATOR("emulator"), SIMULATOR("simulator"), HEADLESS("headless");
+    // @formatter:off
+    DESKTOP("desktop"),
+    MOBILE("mobile"),
+    EMULATOR("emulator"),
+    SIMULATOR("simulator"),
+    HEADLESS("headless");
+    // @formatter:on
 
     private String name;
 

@@ -7,40 +7,20 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.Logs;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Util
 {
-    /**
-     * If true, the tests will be run on the local desktop.  If false, the tests will run on Sauce Labs.
-     */
-    public static final boolean runLocal = false;
     public static final boolean useUnifiedPlatform = false;
-
-    public static final String buildTag = "Build " + new Date();
-
-//    public static boolean isDesktop;
-//    public static boolean isMobile;
-//    public static boolean isEmuSim;
-//    public static boolean isHeadless;
+    public static final String buildTag = "saucedemo-java-cucumber-" + new Date().getTime();
 
     private static ThreadLocal<TestPlatform> testPlatformThreadLocal = new ThreadLocal<>();
 
@@ -117,59 +97,7 @@ public class Util
 
     public static void reportSauceLabsResult(WebDriver driver, boolean status)
     {
-        PlatformContainer pc = getTestPlatform().getPlatformContainer();
-
-        switch (pc)
-        {
-            case DESKTOP:
-            case EMULATOR:
-            case SIMULATOR:
-            case HEADLESS:
-                break;
-
-            default:
-                // All others... not supported.
-                return;
-        }
-
         ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + status);
-    }
-
-    /**
-     * Uses the Appium V2 RESTful API to report test result status to the Sauce Labs dashboard.
-     *
-     * @param sessionId The session ID we want to set the status for
-     * @param status    TRUE if the test was successful, FALSE otherwise
-     */
-    public static void reportTestObjectResult(String sessionId, boolean status)
-    {
-        PlatformContainer pc = getTestPlatform().getPlatformContainer();
-
-        switch (pc)
-        {
-            case MOBILE:
-                break;
-
-            default:
-                // All others... not supported.
-                return;
-        }
-
-        // The Appium REST Api expects JSON payloads...
-        MediaType[] mediaType = new MediaType[]{MediaType.APPLICATION_JSON_TYPE};
-
-        // Construct the new REST client...
-        Client client = ClientBuilder.newClient();
-        WebTarget resource = client.target("https://app.testobject.com/api/rest/v2/appium");
-
-        // Construct the REST body payload...
-        Entity entity = Entity.json(Collections.singletonMap("passed", status));
-
-        // Build a PUT request to /v2/appium/session/{:sessionId}/test
-        Invocation.Builder request = resource.path("session").path(sessionId).path("test").request(mediaType);
-
-        // Execute the PUT request...
-        request.put(entity);
     }
 
     public static void log(String format, Object... args)
@@ -196,7 +124,7 @@ public class Util
         map.put("condition", condition.toValue());
         try
         {
-            ((JavascriptExecutor) driver).executeScript("sauce:throttle", map);
+            ((JavascriptExecutor) driver).executeScript("sauce:throttleNetwork", map);
         }
         catch (JavascriptException e)
         {
@@ -244,14 +172,16 @@ public class Util
 
         try
         {
-
             Map<String, Object> map = new HashMap<>();
             map.put("type", "sauce:performance");
+
             try
             {
-                results = (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:log", map);
+                Object object = ((JavascriptExecutor) driver).executeScript("sauce:log", map);
+                results = (Map<String, Object>) object;
             }
-            catch (JavascriptException e)
+//            catch (JavascriptException e)
+            catch (Exception e)
             {
                 RemoteWebDriver rwd = (RemoteWebDriver) driver;
                 Capabilities caps = rwd.getCapabilities();
@@ -323,5 +253,29 @@ public class Util
     public static void setTestPlatform(TestPlatform tp)
     {
         testPlatformThreadLocal.set(tp);
+    }
+
+    /*
+     * Hack to trigger events because React doesn't properly on iOS
+     * See https://github.com/saucelabs/sample-app-web/issues/10
+     */
+    public static void triggerOnChange(WebDriver driver, String elementId)
+    {
+        TestPlatform tp = getTestPlatform();
+        if (!tp.getPlatformName().equalsIgnoreCase("ios"))
+            return;
+
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+
+        // @formatter:off
+        String jscode =
+                String.format(
+                    "var input = document.getElementById('%s'); var lastValue = '';" +
+                    "let event = new Event('input', { bubbles: true });" +
+                    "let tracker = input._valueTracker; if (tracker) { tracker.setValue(lastValue); }" +
+                    "input.dispatchEvent(event);", elementId);
+        // @formatter:on
+
+        executor.executeScript(jscode);
     }
 }

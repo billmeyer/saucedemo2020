@@ -1,5 +1,6 @@
 package com.saucelabs.example.pages;
 
+import com.saucelabs.example.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,13 +10,16 @@ public class CheckOutStepOnePage extends AbstractPage
 {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
-    @FindBy(xpath = "//input[@data-test='firstName']")
+//    @FindBy(xpath = "//input[@data-test='firstName']")
+    @FindBy(id = "first-name")
     private WebElement firstNameElem;
 
-    @FindBy(xpath = "//input[@data-test='lastName']")
+//    @FindBy(xpath = "//input[@data-test='lastName']")
+    @FindBy(id = "last-name")
     private WebElement lastNameElem;
 
-    @FindBy(xpath = "//input[@data-test='postalCode']")
+//    @FindBy(xpath = "//input[@data-test='postalCode']")
+    @FindBy(id = "postal-code")
     private WebElement postalCodeElem;
 
     @FindBy(css = "div.checkout_buttons > input")
@@ -37,18 +41,21 @@ public class CheckOutStepOnePage extends AbstractPage
     {
         firstNameElem.clear();
         firstNameElem.sendKeys(firstName);
+        Util.triggerOnChange(getDriver(), "first-name");
     }
 
     public void enterLastName(String lastName)
     {
         lastNameElem.clear();
         lastNameElem.sendKeys(lastName);
+        Util.triggerOnChange(getDriver(), "last-name");
     }
 
     public void enterPostalCode(String postalCode)
     {
         postalCodeElem.clear();
         postalCodeElem.sendKeys(postalCode);
+        Util.triggerOnChange(getDriver(), "postal-code");
     }
 
     public void clickContinue()

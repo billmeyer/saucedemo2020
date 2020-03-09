@@ -16,6 +16,8 @@ import org.testng.annotations.Parameters;
     glue = {"com/saucelabs/example/stepdefs"},
     snippets = SnippetType.CAMELCASE,
 
+    tags = {"~@performance1"},
+
     // Plugins
     plugin = {
         // Cucumber report location
@@ -29,7 +31,7 @@ public class MobileTestRunner extends AbstractTestRunner
 {
     @Parameters({"deviceName", "platformName", "platformVersion", "appKey"})
     @BeforeClass(alwaysRun = true)
-    public void setUpMobileProfile(@Optional("") String deviceName, String platformName, String platformVersion, @Optional("") String appKey)
+    public void setUpMobileProfile(@Optional("") String deviceName, String platformName, @Optional("") String platformVersion, @Optional("") String appKey)
     {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 
