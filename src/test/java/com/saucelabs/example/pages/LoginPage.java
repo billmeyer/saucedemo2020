@@ -11,15 +11,13 @@ public class LoginPage extends AbstractPage
 {
     public static final String PAGE_URL = "https://www.saucedemo.com";
 
-//    @FindBy(xpath = "//input[@data-test='username']")
     @FindBy(id = "user-name")
     private WebElement usernameElem;
 
-//    @FindBy(xpath = "//input[@data-test='password']")
     @FindBy(id = "password")
     private WebElement passwordElem;
 
-    @FindBy(xpath = "//input[@value='LOGIN']")
+    @FindBy(css = "input.btn_action")
     private WebElement loginElem;
 
     public LoginPage(WebDriver driver)

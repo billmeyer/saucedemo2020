@@ -2,150 +2,150 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="50" configfailurepolicy="continue">
 
-    <!-- CHROME testing -->
+<!--    &lt;!&ndash; CHROME testing &ndash;&gt;-->
 
-    <test name="Chrome Latest on Windows 10">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Windows 10"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome Latest on Windows 10">-->
+<!--        <parameter name="browser" value="CHROME"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="Windows 10"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome Latest-1 on Windows 10">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest-1"/>
-        <parameter name="platformName" value="Windows 10"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome Latest-1 on Windows 10">-->
+<!--        <parameter name="browser" value="CHROME"/>-->
+<!--        <parameter name="version" value="latest-1"/>-->
+<!--        <parameter name="platformName" value="Windows 10"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome on macOS">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <parameter name="dataCenter" value="US"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on macOS">-->
+<!--        <parameter name="browser" value="CHROME"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="macOS 10.15"/>-->
+<!--        <parameter name="dataCenter" value="US"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome Latest-1 on macOS">
-        <parameter name="browser" value="CHROME"/>
-        <parameter name="version" value="latest-1"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <parameter name="dataCenter" value="US"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome Latest-1 on macOS">-->
+<!--        <parameter name="browser" value="CHROME"/>-->
+<!--        <parameter name="version" value="latest-1"/>-->
+<!--        <parameter name="platformName" value="macOS 10.15"/>-->
+<!--        <parameter name="dataCenter" value="US"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <!-- FIREFOX testing -->
+<!--    &lt;!&ndash; FIREFOX testing &ndash;&gt;-->
 
-    <test name="Firefox Latest on Windows 10">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="Windows 10"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Firefox Latest on Windows 10">-->
+<!--        <parameter name="browser" value="FIREFOX"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="Windows 10"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Firefox Latest-1 on Windows 10">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest-1"/>
-        <parameter name="platformName" value="Windows 10"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Firefox Latest-1 on Windows 10">-->
+<!--        <parameter name="browser" value="FIREFOX"/>-->
+<!--        <parameter name="version" value="latest-1"/>-->
+<!--        <parameter name="platformName" value="Windows 10"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Firefox Latest on macOS">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Firefox Latest on macOS">-->
+<!--        <parameter name="browser" value="FIREFOX"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="macOS 10.15"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Firefox Latest-1 on macOS">
-        <parameter name="browser" value="FIREFOX"/>
-        <parameter name="version" value="latest-1"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Firefox Latest-1 on macOS">-->
+<!--        <parameter name="browser" value="FIREFOX"/>-->
+<!--        <parameter name="version" value="latest-1"/>-->
+<!--        <parameter name="platformName" value="macOS 10.15"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <!-- SAFARI testing -->
 
-    <test name="Safari on macOS 10.15 in the US DC">
-        <parameter name="browser" value="SAFARI"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Safari on macOS 10.15 in the US DC">-->
+<!--        <parameter name="browser" value="SAFARI"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="macOS 10.15"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Safari on macOS 10.14 in the US DC">
-        <parameter name="browser" value="SAFARI"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="macOS 10.14"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Safari on macOS 10.14 in the US DC">-->
+<!--        <parameter name="browser" value="SAFARI"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <parameter name="platformName" value="macOS 10.14"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.DesktopTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <!-- EMULATOR testing -->
+<!--    &lt;!&ndash; EMULATOR testing &ndash;&gt;-->
 
-    <test name="Chrome on Android 10.0 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="10.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android 10.0 Emulator">-->
+<!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value="10.0"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome on Android 9.0 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="9.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android 9.0 Emulator">-->
+<!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value="9.0"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome on Android 8.1 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="8.1"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android 8.1 Emulator">-->
+<!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value="8.1"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome on Android 7.1 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7.1"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android 7.1 Emulator">-->
+<!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value="7.1"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Chrome on Android 7 Emulator">
-        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android 7 Emulator">-->
+<!--        <parameter name="deviceName" value="Android GoogleAPI Emulator"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value="7.0"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <!-- SIMULATOR testing -->
 
@@ -158,34 +158,34 @@
         </classes>
     </test>
 
-    <test name="Safari on iPhone 8 Plus Simulator">
-        <parameter name="deviceName" value="iPhone 8 Plus Simulator"/>
-        <parameter name="platformName" value="iOS"/>
-        <parameter name="platformVersion" value="13.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Safari on iPhone 8 Plus Simulator">-->
+<!--        <parameter name="deviceName" value="iPhone 8 Plus Simulator"/>-->
+<!--        <parameter name="platformName" value="iOS"/>-->
+<!--        <parameter name="platformVersion" value="13.0"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Safari on iPhone 7 Plus Simulator">
-        <parameter name="deviceName" value="iPhone 7 Plus Simulator"/>
-        <parameter name="platformName" value="iOS"/>
-        <parameter name="platformVersion" value="13.0"/>
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Safari on iPhone 7 Plus Simulator">-->
+<!--        <parameter name="deviceName" value="iPhone 7 Plus Simulator"/>-->
+<!--        <parameter name="platformName" value="iOS"/>-->
+<!--        <parameter name="platformVersion" value="13.0"/>-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <!-- Real Device Testing -->
+<!--    &lt;!&ndash; Real Device Testing &ndash;&gt;-->
 
-    <test name="Chrome on Android">
-        <parameter name="deviceName" value=".*"/>
-        <parameter name="platformName" value="Android"/>
-<!--        <parameter name="platformVersion" value="9"/>-->
-        <classes>
-            <class name="com.saucelabs.example.MobileTestRunner"/>
-        </classes>
-    </test>
+<!--    <test name="Chrome on Android">-->
+<!--        <parameter name="deviceName" value=".*"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--&lt;!&ndash;        <parameter name="platformVersion" value="9"/>&ndash;&gt;-->
+<!--        <classes>-->
+<!--            <class name="com.saucelabs.example.MobileTestRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <!-- Sauce Demo doesn't work on iOS Real Devices -->
     <!-- See https://github.com/saucelabs/sample-app-web/issues/10 for details -->

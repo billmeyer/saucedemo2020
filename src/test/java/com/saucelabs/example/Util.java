@@ -261,7 +261,8 @@ public class Util
     public static void triggerOnChange(WebDriver driver, String elementId)
     {
         TestPlatform tp = getTestPlatform();
-        if (!tp.getPlatformName().equalsIgnoreCase("ios"))
+//        if (!tp.getPlatformName().equalsIgnoreCase("ios"))
+        if (tp.getBrowser() != Browser.SAFARI && !tp.getPlatformName().equalsIgnoreCase("ios"))
         {
             return;
         }
