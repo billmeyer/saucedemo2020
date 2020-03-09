@@ -16,6 +16,7 @@ import org.testng.annotations.Parameters;
     glue = {"com/saucelabs/example/stepdefs"},
     snippets = SnippetType.CAMELCASE,
 
+    // Ignore performance tests on mobile
     tags = {"~@performance1"},
 
     // Plugins
