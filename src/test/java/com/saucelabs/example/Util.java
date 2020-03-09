@@ -7,7 +7,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -20,7 +19,7 @@ import java.util.Map;
 public class Util
 {
     public static final boolean useUnifiedPlatform = false;
-    public static final String buildTag = "saucedemo-java-cucumber-" + new Date().getTime();
+    public static final String buildTag = "saucedemo2020-" + new Date().getTime();
 
     private static ThreadLocal<TestPlatform> testPlatformThreadLocal = new ThreadLocal<>();
 
@@ -263,9 +262,11 @@ public class Util
     {
         TestPlatform tp = getTestPlatform();
         if (!tp.getPlatformName().equalsIgnoreCase("ios"))
+        {
             return;
+        }
 
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
 
         // @formatter:off
         String jscode =
