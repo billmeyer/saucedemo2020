@@ -21,42 +21,17 @@ public class DriverFactory implements En
 {
     private static final String userName = System.getenv("SAUCE_USERNAME");
     private static final String accessKey = System.getenv("SAUCE_ACCESS_KEY");
-    //    private static final String toAccessKey = System.getenv("TESTOBJECT_API_KEY");
     private static final String headlessUserName = System.getenv("SAUCE_HEADLESS_USERNAME");
     private static final String headlessAccessKey = System.getenv("SAUCE_HEADLESS_ACCESS_KEY");
 
-    private static URL LOCAL_SELENIUM_URL;
-    private static URL LOCAL_APPIUM_URL;
     private static URL SAUCE_EU_URL;
     private static URL SAUCE_US_URL;
-    //    private static URL TESTOBJECT_URL;
     private static URL HEADLESS_URL;
 
     static
     {
         try
         {
-            LOCAL_SELENIUM_URL = new URL("http://127.0.0.1:4444/wd/hub");
-        }
-        catch (MalformedURLException e)
-        {
-            System.err.printf("Malformed LOCAL_APPIUM_URL: %s\n", e.getMessage());
-            System.exit(-1);
-        }
-
-        try
-        {
-            LOCAL_APPIUM_URL = new URL("http://127.0.0.1:4723/wd/hub");
-        }
-        catch (MalformedURLException e)
-        {
-            System.err.printf("Malformed LOCAL_APPIUM_URL: %s\n", e.getMessage());
-            System.exit(-1);
-        }
-
-        try
-        {
-//            SAUCE_US_URL = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub");
             SAUCE_US_URL = new URL("https://" + userName + ":" + accessKey + "@ondemand.us-west-1.saucelabs.com/wd/hub");
         }
         catch (MalformedURLException e)
@@ -177,10 +152,7 @@ public class DriverFactory implements En
         if (tp.getCapturePerformance())
         {
             sauceOpts.setCapability("capturePerformance", true);
-//            sauceOpts.setCapability("crmuxdriverVersion", "beta");
         }
-
-//            sauceOpts.setCapability("seleniumVersion", "3.12.0");
 
         // Add Jenkins Build Info...
         addJenkinsBuildInfo(sauceOpts);
