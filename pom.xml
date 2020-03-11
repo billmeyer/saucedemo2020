@@ -190,7 +190,7 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.7.0</version>
+                <version>5.0.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
@@ -203,10 +203,14 @@
                             <outputDirectory>target/cucumber-reports</outputDirectory>
 <!--                            <cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
                             <inputDirectory>${project.build.directory}/json-reports</inputDirectory>
+<!--                            <jsonFiles>-->
+<!--                                <param>cucumber-desktop.json</param>-->
+<!--                                <param>cucumber-headless.json</param>-->
+<!--                                <param>cucumber-mobile.json</param>-->
+<!--                            </jsonFiles>-->
                             <jsonFiles>
-                                <param>cucumber-desktop.json</param>
-                                <param>cucumber-headless.json</param>
-                                <param>cucumber-mobile.json</param>
+                                <!-- supports wildcard or name pattern -->
+                                <param>**/*.json</param>
                             </jsonFiles>
                             <!--<jsonFiles>-->
                             <!--<param>target/cucumber-reports/CucumberTestReport.1.json</param>-->
