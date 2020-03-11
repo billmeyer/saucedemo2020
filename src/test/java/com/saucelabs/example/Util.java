@@ -184,7 +184,7 @@ public class Util
             {
                 RemoteWebDriver rwd = (RemoteWebDriver) driver;
                 Capabilities caps = rwd.getCapabilities();
-                System.err.printf(">>> Failed to retrieve Sauce Performance Log: %s\n(%s %s on %s)\n", e.getMessage());
+                System.err.printf(">>> Failed to retrieve Sauce Performance Log: %s\n", e.getMessage());
                 System.err.printf(">>> (%s %s on %s)\n", caps.getBrowserName(), caps.getVersion(), caps.getPlatform());
             }
 
