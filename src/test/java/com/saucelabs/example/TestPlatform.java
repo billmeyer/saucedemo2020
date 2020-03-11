@@ -15,8 +15,6 @@ public class TestPlatform
 
     private TestPlatform()
     {
-        extendedDebugging = false;
-        capturePerformance = false;
     }
 
     public String getAppKey()
@@ -78,7 +76,8 @@ public class TestPlatform
 
         public Builder()
         {
-
+            capturePerformance = false;
+            extendedDebugging = false;
         }
 
         public Builder appKey(String appKey)
