@@ -38,12 +38,23 @@ public class StartingSteps extends DriverFactory implements En
                 // @formatter:off
 
                 // Sample Window/Chrome test
+//                tp = builder
+//                        .browser(Browser.CHROME)
+//                        .browserVersion("latest")
+//                        .platformName("Windows 10")
+//                        .dataCenter(DataCenter.US)
+//                        .platformContainer(PlatformContainer.DESKTOP)
+//                        .build();
+
+                // Sample Window/Chrome test with capturePerformance
                 tp = builder
                         .browser(Browser.CHROME)
                         .browserVersion("latest")
                         .platformName("Windows 10")
                         .dataCenter(DataCenter.US)
                         .platformContainer(PlatformContainer.DESKTOP)
+                        .extendedDebugging(true)
+                        .capturePerformance(true)
                         .build();
 
 //                // Sample Headless/Chrome test
