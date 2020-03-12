@@ -82,15 +82,6 @@
 
     <!-- SAFARI testing -->
 
-    <test name="Safari on macOS 10.15 in the US DC">
-        <parameter name="browser" value="SAFARI"/>
-        <parameter name="version" value="latest"/>
-        <parameter name="platformName" value="macOS 10.15"/>
-        <classes>
-            <class name="com.saucelabs.example.DesktopTestRunner"/>
-        </classes>
-    </test>
-
     <test name="Safari on macOS 10.14 in the US DC">
         <parameter name="browser" value="SAFARI"/>
         <parameter name="version" value="latest"/>
