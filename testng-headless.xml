@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="50" configfailurepolicy="continue">
+
+    <!-- Chrome on Headless-->
+
+    <test name="Chrome Latest on Headless">
+        <parameter name="browser" value="CHROME"/>
+        <parameter name="version" value="latest"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Chrome Latest-1 on Headless">
+        <parameter name="browser" value="CHROME"/>
+        <parameter name="version" value="latest-1"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Chrome Latest-2 on Headless">
+        <parameter name="browser" value="CHROME"/>
+        <parameter name="version" value="latest-2"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+    <!-- Firefox on Headless-->
+
+    <test name="Firefox Latest on Headless">
+        <parameter name="browser" value="FIREFOX"/>
+        <parameter name="version" value="latest"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Firefox Latest-1 on Headless">
+        <parameter name="browser" value="FIREFOX"/>
+        <parameter name="version" value="latest-1"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Firefox Latest-2 on Headless">
+        <parameter name="browser" value="FIREFOX"/>
+        <parameter name="version" value="latest-2"/>
+        <parameter name="platformName" value="Linux"/>
+        <classes>
+            <class name="com.saucelabs.example.HeadlessTestRunner"/>
+        </classes>
+    </test>
+
+</suite>
