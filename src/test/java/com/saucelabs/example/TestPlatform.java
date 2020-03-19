@@ -163,4 +163,21 @@ public class TestPlatform
         }
     }
 
+    @Override
+    public String toString()
+    {
+        // @formatter:off
+        return "TestPlatform{browser=" + browser +
+                ", dataCenter=" + dataCenter +
+                ", platformContainer=" + platformContainer +
+                ", appKey='" + appKey + '\'' +
+                ", browserVersion='" + browserVersion + '\'' +
+                ", deviceName='" + deviceName + '\'' +
+                ", platformName='" + platformName + '\'' +
+                ", platformVersion='" + platformVersion + '\'' +
+                ", extendedDebugging=" + extendedDebugging +
+                ", capturePerformance=" + capturePerformance +
+            '}';
+        // @formatter:on
+    }
 }

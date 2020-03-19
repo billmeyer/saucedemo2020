@@ -8,6 +8,7 @@ import io.appium.java_client.remote.MobileBrowserType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -285,23 +286,32 @@ public class DriverFactory implements En
         long start = System.currentTimeMillis();
 
         Platform platform = Platform.fromString(tp.getPlatformName());
-        switch (platform)
+        try
         {
-            case ANDROID:
-                caps.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
-                caps.setCapability("automationName", "UIAutomator2");
-                driver = new AndroidDriver(url, caps);
-                break;
+            switch (platform)
+            {
+                case ANDROID:
+                    caps.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+                    caps.setCapability("automationName", "UIAutomator2");
+                    driver = new AndroidDriver(url, caps);
+                    break;
 
-            case IOS:
-                caps.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
-                caps.setCapability("automationName", "XCUITest");
-                caps.setCapability("sendKeyStrategy","setValue");
-                driver = new IOSDriver(url, caps);
-                break;
+                case IOS:
+                    caps.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
+                    caps.setCapability("automationName", "XCUITest");
+                    caps.setCapability("sendKeyStrategy", "setValue");
+                    driver = new IOSDriver(url, caps);
+                    break;
 
-            default:
-                return null;
+                default:
+                    return null;
+            }
+        }
+        catch (SessionNotCreatedException e)
+        {
+            Util.log("Failed to create a new mobile session: %s", e.getMessage());
+            Util.log("-- tried creating a session for %s", tp.toString());
+            return null;
         }
 
         long stop = System.currentTimeMillis();
