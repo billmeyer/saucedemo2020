@@ -10,6 +10,7 @@ public class PagesFactory
     private CheckOutStepOnePage checkOutStepOnePage;
     private CheckOutStepTwoPage checkOutStepTwoPage;
     private InventoryPage inventoryPage;
+    private RegisterPage registerPage;
     private LoginPage loginPage;
     private CartPage cartPage;
 
@@ -52,6 +53,11 @@ public class PagesFactory
     public InventoryPage getInventoryPage()
     {
         return inventoryPage;
+    }
+
+    public RegisterPage getRegisterPage()
+    {
+        return registerPage;
     }
 
     public LoginPage getLoginPage()

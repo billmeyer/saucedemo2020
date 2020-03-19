@@ -5,6 +5,7 @@ import com.saucelabs.example.Util;
 import com.saucelabs.example.pages.InventoryPage;
 import com.saucelabs.example.pages.LoginPage;
 import com.saucelabs.example.pages.PagesFactory;
+import com.saucelabs.example.pages.RegisterPage;
 import cucumber.api.java8.En;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
@@ -82,6 +83,15 @@ public class LoginPageSteps implements En
 //            Util.sleep(3000);
         });
 
+        And("^The user clicks the 'Register' button$", () -> {
+            PagesFactory pf = PagesFactory.getInstance();
+            RemoteWebDriver driver = pf.getDriver();
+            Util.info(driver, ">>> The user clicks the 'Register' button");
+
+            LoginPage loginPage = pf.getLoginPage();
+            loginPage.clickRegister();
+        });
+
         Then("^The user should login successfully and is brought to the inventory page$", () -> {
             PagesFactory pf = PagesFactory.getInstance();
             RemoteWebDriver driver = pf.getDriver();
@@ -92,6 +102,20 @@ public class LoginPageSteps implements En
 
             String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
             Assert.assertEquals(currentUrl, InventoryPage.PAGE_URL);
+
+//            Util.takeScreenShot(driver);
+        });
+
+        Then("^The user is brought to the register page$", () -> {
+            PagesFactory pf = PagesFactory.getInstance();
+            RemoteWebDriver driver = pf.getDriver();
+            Util.info(driver, ">>> The user should be brought to the register page");
+
+            RegisterPage registerPage = pf.getRegisterPage();
+            registerPage.waitForPageLoad();
+
+            String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+            Assert.assertEquals(currentUrl, RegisterPage.PAGE_URL);
 
 //            Util.takeScreenShot(driver);
         });

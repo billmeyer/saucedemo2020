@@ -64,4 +64,8 @@ Feature: Test Entering Credentials
       |username       |password     |
       |standard_user  |secret_sauce |
 
-
+  ###############################################################################################
+  @failure1
+  Scenario: Check registration signup is working
+    And The user clicks the 'Register' button
+    Then The user is brought to the register page

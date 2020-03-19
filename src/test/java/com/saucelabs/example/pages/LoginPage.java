@@ -70,6 +70,20 @@ public class LoginPage extends AbstractPage
         Util.triggerOnChange(getDriver(), "user-name");
     }
 
+    /**
+     * NOTE! This method is intended to *always* fail!  It's for running failure analysis jobs
+     *
+     * @return
+     */
+    public void clickRegister()
+    {
+        WebElement elem = getDriver().findElement(By.xpath("//button[@class='registration-button']"));
+        if (elem != null)
+        {
+            elem.click();
+        }
+    }
+
     public boolean hasLockedOutError()
     {
         WebElement elem = getDriver().findElement(By.xpath("//button[@class='error-button']"));
