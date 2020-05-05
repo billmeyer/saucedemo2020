@@ -1,0 +1,11 @@
+jobs:
+- job: Checkout
+- job: Build
+- job: Unit Tests
+- job: Verify Build
+- job: Upload to Sauce Storage
+- job: Smoke Tests
+- job: Performance Tests
+- job: Regression Tests
+- job: Upload to App Center
+- job: Report Generation
