@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Desktop and Mobile Test Suite" verbose="1" parallel="tests" thread-count="50" configfailurepolicy="continue">
+
+    <!-- CHROME testing -->
+
+    <test name="Chrome Latest on Windows 10">
+        <parameter name="browser" value="CHROME"/>
+        <parameter name="version" value="latest"/>
+        <parameter name="platformName" value="Windows 10"/>
+        <parameter name="extendedDebugging" value="true"/>
+        <classes>
+            <class name="com.saucelabs.example.DesktopTestRunner"/>
+        </classes>
+    </test>
+
+</suite>
