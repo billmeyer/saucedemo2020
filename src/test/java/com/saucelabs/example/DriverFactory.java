@@ -237,6 +237,7 @@ public class DriverFactory implements En
     {
         URL url = null;
         RemoteWebDriver driver;
+        String resultsURL = "";
 
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("name", scenario.getName());
@@ -317,7 +318,12 @@ public class DriverFactory implements En
         long stop = System.currentTimeMillis();
         Util.log("Driver loaded in %.2f seconds", ((stop - start) / 1000f));
 
+        resultsURL = (String) driver.getCapabilities().getCapability("testobject_test_report_url");
+
+        String sessionId = driver.getSessionId().toString();
         Util.log("Started %s", new Date().toString());
+        Util.log("Test Results: %s", resultsURL);
+        Util.log("SauceOnDemandSessionID=%s job-name=%s", sessionId, scenario.getName());
 
         // Set reasonable page load and script timeouts
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
