@@ -125,25 +125,33 @@ public class DriverFactory implements En
     private static RemoteWebDriver getDesktopDriverInstance(TestPlatform tp, Scenario scenario)
     {
         MutableCapabilities caps = new MutableCapabilities();
-        caps.setCapability("browserName", tp.getBrowser().toString());
-        caps.setCapability("version", tp.getBrowserVersion());
-        caps.setCapability("platform", tp.getPlatformName());
-        String resultsURL = "";
 
-        // Set ACCEPT_SSL_CERTS  variable to true
+        // Set the W3C Specific Values
+        // See https://www.w3.org/TR/webdriver1/#capabilities
+        caps.setCapability("browserName", tp.getBrowser().toString());
+        caps.setCapability("browserVersion", tp.getBrowserVersion());
+        caps.setCapability("platformName", tp.getPlatformName());
         caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
+        String resultsURL = "";
         RemoteWebDriver driver = null;
 
-        // Build the Sauce Options first...
+        // Set the Sauce Labs-specific Values
+        // See https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options#TestConfigurationOptions-OptionalSeleniumCapabilitiesforSauceLabsTests
+        // See https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options#TestConfigurationOptions-SauceLabsCustomTestingOptions
+        // See https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options#TestConfigurationOptions-OptionalSauceLabsTestingFeatures
+
         MutableCapabilities sauceOpts = new MutableCapabilities();
+        sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("name", scenario.getName());
         sauceOpts.setCapability("username", userName);
         sauceOpts.setCapability("accesskey", accessKey);
         sauceOpts.setCapability("recordVideo", "true");
         sauceOpts.setCapability("recordMp4", "true");
         sauceOpts.setCapability("recordScreenshots", "true");
-//            sauceOpts.setCapability("screenResolution", "1600x1200");
+//        sauceOpts.setCapability("tunnelIdentifier", "SOME_TUNNEL_NAME");
+//        sauceOpts.setCapability("parentTunnel", "USERNAME_OF_TUNNEL_OWNER");
+//        sauceOpts.setCapability("screenResolution", "1600x1200");
 
         if (tp.getExtendedDebugging())
         {
@@ -157,32 +165,7 @@ public class DriverFactory implements En
 
         // Add Jenkins Build Info...
         addJenkinsBuildInfo(sauceOpts);
-
-//            if (tp.getPlatformName().equalsIgnoreCase("linux"))
-        {
-            // Presently, no supported browsers on Sauce Labs' Linux have W3C so we default back to the old driver
-            caps.merge(sauceOpts);
-        }
-//            else
-//            {
-//                caps.setCapability("sauce:options", sauceOpts);
-//
-//                // For browsers that support W3C natively, turn it on!
-//                switch (tp.getBrowser())
-//                {
-//                    case CHROME:
-//                        ChromeOptions chromeOptions = new ChromeOptions();
-//                        chromeOptions.setExperimentalOption("w3c", true);
-//                        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-//                        break;
-//
-//                    case FIREFOX:
-//                        FirefoxOptions firefoxOptions = new FirefoxOptions();
-//                        firefoxOptions.setCapability("w3c", true);
-//                        caps.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
-//                        break;
-//                }
-//            }
+        caps.merge(sauceOpts);
 
         if (tp.getDataCenter().equals(DataCenter.US))
         {
